@@ -52,6 +52,10 @@ spec:
                   to.
                 minLength: 1
                 type: string
+              disableAutomatedClean:
+                description: DisableAutomatedClean indicates whether disk cleaning
+                  should be enabled/disabled for a node during provisioning & deprovisioning.
+                type: boolean
               metaData:
                 description: MetaData contains the information needed to generate
                   the metadata secret
@@ -827,6 +831,10 @@ spec:
           status:
             description: Metal3DataTemplateSptatus defines the observed state of Metal3DataTemplate.
             properties:
+              disableAutomatedClean:
+                description: DisableAutomatedClean indicates whether disk cleaning
+                  is enabled/disabled for a node.
+                type: boolean
               indexes:
                 additionalProperties:
                   type: integer
@@ -836,6 +844,8 @@ spec:
                 description: LastUpdated identifies when this status was last observed.
                 format: date-time
                 type: string
+            required:
+            - disableAutomatedClean
             type: object
         type: object
     served: true

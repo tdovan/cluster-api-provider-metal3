@@ -437,6 +437,10 @@ type Metal3DataTemplateSpec struct {
 	//NetworkData contains the information needed to generate the networkdata
 	// secret
 	NetworkData *NetworkData `json:"networkData,omitempty"`
+
+	// DisableAutomatedClean indicates whether disk cleaning should be enabled/disabled
+	// for a node during provisioning & deprovisioning.
+	DisableAutomatedClean bool `json:"disableAutomatedClean,omitempty"`
 }
 
 // Metal3DataTemplateSptatus defines the observed state of Metal3DataTemplate.
@@ -447,6 +451,10 @@ type Metal3DataTemplateStatus struct {
 
 	//Indexes contains the map of Metal3Machine and index used
 	Indexes map[string]int `json:"indexes,omitempty"`
+
+	// DisableAutomatedClean indicates whether disk cleaning is enabled/disabled
+	// for a node.
+	DisableAutomatedClean bool `json:"disableAutomatedClean"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

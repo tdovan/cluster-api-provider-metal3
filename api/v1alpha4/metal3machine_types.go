@@ -63,6 +63,10 @@ type Metal3MachineSpec struct {
 	// NetworkData is an object storing the reference to the secret containing the
 	// network data given by the user.
 	NetworkData *corev1.SecretReference `json:"networkData,omitempty"`
+
+	// DisableAutomatedClean indicates whether disk cleaning should be enabled/disabled
+	// for a node during provisioning & deprovisioning.
+	DisableAutomatedClean bool `json:"disableAutomatedClean,omitempty"`
 }
 
 // IsValid returns an error if the object is not valid, otherwise nil. The
@@ -159,6 +163,10 @@ type Metal3MachineStatus struct {
 	// NetworkData is an object storing the reference to the secret containing the
 	// network data used to deploy the BareMetalHost.
 	NetworkData *corev1.SecretReference `json:"networkData,omitempty"`
+
+	// DisableAutomatedClean indicates whether disk cleaning is enabled/disabled
+	// for a node.
+	DisableAutomatedClean bool `json:"disableAutomatedClean"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -168,7 +176,7 @@ type Metal3MachineStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:printcolumn:name="ProviderID",type="string",JSONPath=".spec.providerID",description="Provider ID"
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.ready",description="metal3machine is Ready"
-// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=".metadata.labels.cluster\\.x-k8s\\.io/cluster-name",description="Cluster to which this M3Machine belongs"
+// +kubebuilder:printcolumn:name="Cluster",type="string",JSONPath=".metadata.labels.cluster\\.x-k8s\\.io/cluster-name",description="Cluster to which this Metal3Machine belongs"
 // +kubebuilder:printcolumn:name="Phase",type="string",JSONPath=".status.phase",description="metal3machine current phase"
 
 // Metal3Machine is the Schema for the metal3machines API
